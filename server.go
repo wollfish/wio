@@ -18,14 +18,14 @@ var (
 
 var fsHandler fasthttp.RequestHandler
 
-func reponseNotFound(ctx *fasthttp.RequestCtx) {
+func responseNotFound(ctx *fasthttp.RequestCtx) {
 	ctx.Response.SetStatusCode(http.StatusNotFound)
 	ctx.Response.SetBody([]byte("Not Found\n"))
 }
 
 func notFoundHandler(ctx *fasthttp.RequestCtx) {
 	if strings.HasSuffix(string(ctx.Request.RequestURI()), ".map") {
-		reponseNotFound(ctx)
+		responseNotFound(ctx)
 		return
 	}
 	ctx.Logger().Printf("File %s not found, defaulting to index.html", ctx.Path())
